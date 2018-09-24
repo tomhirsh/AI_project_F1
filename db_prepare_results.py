@@ -28,8 +28,7 @@ with open('formula_DB/results_by_date.csv','r') as f:
             row[17] = dict_status[row[17]]  # row[17] contains the statusId. convert to statusBinary
         results.append(row)  # after changes, including the header
         #count+=1
-        #if count>50:
-        #   break
+
 
 """
 compute the number of driver-involved-status until the current race
@@ -87,7 +86,11 @@ for i in range(len(results)-1, 0, -1):
 (results[0]).append('podiums')
 
 """
+count=0
 # self-check
 for i in range(len(results)):
     print(results[i])
+    count+=1
+    if count>10:
+        break
 """
