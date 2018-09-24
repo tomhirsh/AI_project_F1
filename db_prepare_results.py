@@ -19,17 +19,17 @@ print(len(dict))
 """
 
 results = []
-# count = 0 # counter for debugging
-with open('formula_DB/results.csv','r') as f:
+#count = 0 # counter for debugging
+with open('formula_DB/results_by_date.csv','r') as f:
     reader = csv.reader(f)
     for row in reader:
         # in results, instead of statusId, put the corresponding statusBinary
         if row[0] != 'resultId':
             row[17] = dict_status[row[17]]  # row[17] contains the statusId. convert to statusBinary
         results.append(row)  # after changes, including the header
-        # count+=1
-        # if count>50:
-        #    break
+        #count+=1
+        #if count>50:
+        #   break
 
 """
 compute the number of driver-involved-status until the current race
