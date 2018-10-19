@@ -82,8 +82,8 @@ for i in range(len(results)-1, 0, -1):
         row.append(0)
 
 (results[0]).append('counterInvolvedProblems')
-(results[0]).append('wins')
-(results[0]).append('podiums')
+(results[0]).append('winsUntilThisRace')
+(results[0]).append('podiumsUntilThisRace')
 
 """
 count=0
