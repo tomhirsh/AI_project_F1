@@ -1,5 +1,4 @@
 import csv
-import operator
 
 """
 Preparing the db of countries, giving id to each country by a specific order
@@ -11,10 +10,15 @@ The order of countries is defined by wiki_countries.csv.
 Notice that a name of a country is the same as in wiki_drivers_edited.csv, as we add it to the drivers in db_prepare_wiki.py
 """
 
+
+def get_rank_by_country(dict_countries, country_name):
+    return dict_countries[country_name]
+
+
 def country_by_championships():
     championships = {}
     counter = 0
-    with open('wiki_countries.csv', 'r', encoding="utf8") as f:
+    with open('formula_DB/wiki_countries.csv', 'r', encoding="utf8") as f:
         reader = csv.reader(f)
         for row in reader:
             if counter == 0:  # the first row (titles)
@@ -38,10 +42,11 @@ def country_by_championships():
         championships[country] = dict_numbers[championships[country]]
     return championships
 
+
 def country_by_proportion_champs_drivers():
     champions_proportional_drivers = {}
     counter = 0
-    with open('wiki_countries.csv', 'r', encoding="utf8") as f:
+    with open('formula_DB/wiki_countries.csv', 'r', encoding="utf8") as f:
         reader = csv.reader(f)
         for row in reader:
             if counter == 0:  # the first row (titles)
@@ -67,5 +72,15 @@ def country_by_proportion_champs_drivers():
         champions_proportional_drivers[country] = dict_numbers[champions_proportional_drivers[country]]
     return champions_proportional_drivers
 
-#print(country_by_championships())
-#print(country_by_proportion_champs_drivers())
+
+def get_rank_by_championships(country):
+    country_by_championships_ranked = country_by_championships()
+    return get_rank_by_country(country_by_championships_ranked,country)
+
+
+def get_rank_by_proportion_champs_drivers(country):
+    country_by_proportion_champs_drivers_ranked = country_by_proportion_champs_drivers()
+    return get_rank_by_country(country_by_proportion_champs_drivers_ranked,country)
+
+
+#print(get_rank_by_championships('Finland'))

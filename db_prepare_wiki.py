@@ -1,5 +1,5 @@
 import csv
-
+import db_prepare_countries
 
 full_names = {}
 drivers = []
@@ -50,6 +50,27 @@ for row in drivers:
         row.append(wiki_countries[driver_name])
     else:
         row.append(-1)
+        row.append(-1)
+        row.append(-1)
 
-#print(drivers[0])
-#print(drivers[1])
+"""
+use db_prepare_countries to get the rank of a driver's country and append it to the driver
+"""
+counter = 0
+for row in drivers:
+    if counter == 0:
+        row.append("country_rank_by_championships")
+        row.append("country_rank_by_proportion_drivers")
+        counter += 1
+        continue
+    country_name = row[12]
+    if country_name != -1:
+        row.append(db_prepare_countries.get_rank_by_championships(country_name))
+        row.append(db_prepare_countries.get_rank_by_proportion_champs_drivers(country_name))
+    else:
+        row.append(-1)
+        row.append(-1)
+
+
+print(drivers[0])
+print(drivers[1])

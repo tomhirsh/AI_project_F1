@@ -85,7 +85,7 @@ for i in range(len(results)-1, 0, -1):
 (results[0]).append('winsUntilThisRace')
 (results[0]).append('podiumsUntilThisRace')
 
-"""
+
 count=0
 # self-check
 for i in range(len(results)):
@@ -93,4 +93,3 @@ for i in range(len(results)):
     count+=1
     if count>10:
         break
-"""
