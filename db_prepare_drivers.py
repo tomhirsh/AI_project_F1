@@ -1,5 +1,5 @@
 import csv
-import db_prepare_countries_and_races
+import db_prepare_countries_races_constructors
 
 
 def prepare_drivers():
@@ -67,8 +67,8 @@ def prepare_drivers():
             continue
         country_name = row[12]
         if country_name != -1:
-            row.append(db_prepare_countries_and_races.get_rank_by_championships(country_name))
-            row.append(db_prepare_countries_and_races.get_rank_by_proportion_champs_drivers(country_name))
+            row.append(db_prepare_countries_races_constructors.get_rank_by_championships(country_name))
+            row.append(db_prepare_countries_races_constructors.get_rank_by_proportion_champs_drivers(country_name))
         else:
             row.append(-1)
             row.append(-1)

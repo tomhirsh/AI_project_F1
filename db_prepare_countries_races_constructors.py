@@ -12,15 +12,46 @@ Notice that a name of a country is the same as in wiki_drivers_edited.csv, as we
 
 races - prepare the year of a race, by its id
 """
-def prepare_races_by_year():
-    race_with_year = {}
+
+
+def prepare_constructors_rank():
+    constructors = {}
     counter = 0
-    with open('formula_DB/races.csv', 'r', encoding="utf8") as f:
+    with open('formula_DB/constructorStandings.csv', 'r', encoding="utf8") as f:
         reader = csv.reader(f)
         for row in reader:
-            if counter == 0:  # the first row (titles)
-                counter = 1
+            if counter == 0:
+                counter += 1
                 continue
+            constructor_id = int(row[2])
+            wins_in_the_race = int(row[6])
+            if constructor_id in constructors:
+                constructors[constructor_id] += wins_in_the_race
+            else:
+                constructors[constructor_id] = wins_in_the_race
+
+    list_numbers = []
+    for constructor in constructors:
+        if constructors[constructor] not in list_numbers:
+            list_numbers.append(constructors[constructor])
+    list_numbers.sort(reverse=True)
+
+    dict_numbers = {}
+    counter = 0
+    for num in list_numbers:
+        dict_numbers[num] = counter
+        counter += 1
+
+    for constructor in constructors:
+        constructors[constructor] = dict_numbers[constructors[constructor]]
+    return constructors
+
+
+def prepare_races_by_year():
+    race_with_year = {}
+    with open('formula_DB/races.csv', 'r', encoding="utf8") as f:
+        reader = csv.reader(f)
+        for row in reader[1:]:
             race_with_year[int(row[0])] = int(row[1]) #the championships in that country
     return race_with_year
 
@@ -35,8 +66,8 @@ def country_by_championships():
     with open('formula_DB/wiki_countries.csv', 'r', encoding="utf8") as f:
         reader = csv.reader(f)
         for row in reader:
-            if counter == 0:  # the first row (titles)
-                counter = 1
+            if counter == 0:
+                counter += 1
                 continue
             championships[row[0]] = int(row[3]) #the championships in that country
 
@@ -59,13 +90,9 @@ def country_by_championships():
 
 def country_by_proportion_champs_drivers():
     champions_proportional_drivers = {}
-    counter = 0
     with open('formula_DB/wiki_countries.csv', 'r', encoding="utf8") as f:
         reader = csv.reader(f)
-        for row in reader:
-            if counter == 0:  # the first row (titles)
-                counter = 1
-                continue
+        for row in reader[1:]:
             drivers_num = row[1]
             champs_num = row[2]
             champions_proportional_drivers[row[0]] = (int(champs_num))/(int(drivers_num)) # proportion between champions and drivers in that country
@@ -102,5 +129,12 @@ def get_year_of_race(race_id):
     return int(races_by_year[race_id])
 
 
+def get_constructor_rank(constructor_id):
+    constructors_rank = prepare_constructors_rank()
+    return int(constructors_rank[constructor_id])
+
+
+#print(prepare_constructors_rank())
+#print(get_constructor_rank(2))
 #print(get_year_of_race(1))
 #print(get_rank_by_championships('Finland'))
