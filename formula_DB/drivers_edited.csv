@@ -413,7 +413,7 @@ driverId,driverRef,number,code,forename,surname,dob,nationality,url
 412,niemann,,,Brausch,Niemann,07/01/1939,South African,http://en.wikipedia.org/wiki/Brausch_Niemann
 413,pieterse,,,Ernie,Pieterse,04/07/1938,South African,http://en.wikipedia.org/wiki/Ernie_Pieterse
 414,puzey,,,Clive,Puzey,11/07/1941,Rhodesian,http://en.wikipedia.org/wiki/Clive_Puzey
-415,reed,,,Ray,Reed,,South African,http://en.wikipedia.org/wiki/Ray_Reed
+415,reed,,,Ray,Reed,30/04/1932,South African,http://en.wikipedia.org/wiki/Ray_Reed
 416,clapham,,,David,Clapham,18/05/1931,South African,http://en.wikipedia.org/wiki/David_Clapham
 417,blignaut,,,Alex,Blignaut,30/11/1932,South African,http://en.wikipedia.org/wiki/Alex_Blignaut
 418,gregory,,,Masten,Gregory,29/02/1932,American,http://en.wikipedia.org/wiki/Masten_Gregory
@@ -588,7 +588,7 @@ driverId,driverRef,number,code,forename,surname,dob,nationality,url
 586,piotti,,,Luigi,Piotti,27/10/1913,Italian,http://en.wikipedia.org/wiki/Luigi_Piotti
 587,ecclestone,,,Bernie,Ecclestone,28/10/1930,British,http://en.wikipedia.org/wiki/Bernie_Ecclestone
 588,taramazzo,,,Luigi,Taramazzo,05/05/1932,Italian,http://en.wikipedia.org/wiki/Luigi_Taramazzo
-589,chiron,,,Louis,Chiron,1899-08-03,Monegasque,http://en.wikipedia.org/wiki/Louis_Chiron
+589,chiron,,,Louis,Chiron,03/08/1899,Monegasque,http://en.wikipedia.org/wiki/Louis_Chiron
 590,lewis-evans,,,Stuart,Lewis-Evans,20/04/1930,British,http://en.wikipedia.org/wiki/Stuart_Lewis-Evans
 591,george_amick,,,George,Amick,24/10/1924,American,http://en.wikipedia.org/wiki/George_Amick
 592,reece,,,Jimmy,Reece,17/11/1929,American,http://en.wikipedia.org/wiki/Jimmy_Reece
@@ -702,7 +702,7 @@ driverId,driverRef,number,code,forename,surname,dob,nationality,url
 700,scarborough,,,Carl,Scarborough,03/07/1914,American,http://en.wikipedia.org/wiki/Carl_Scarborough
 701,holland,,,Bill,Holland,18/12/1907,American,http://en.wikipedia.org/wiki/Bill_Holland
 702,bob_scott,,,Bob,Scott,04/10/1928,American,http://en.wikipedia.org/wiki/Bob_Scott_(auto_racer)
-703,legat,,,Arthur,Legat,1898-11-01,Belgian,http://en.wikipedia.org/wiki/Arthur_Legat
+703,legat,,,Arthur,Legat,01/11/1898,Belgian,http://en.wikipedia.org/wiki/Arthur_Legat
 704,cabantous,,,Yves,Cabantous,08/10/1904,French,http://en.wikipedia.org/wiki/Yves_Giraud_Cabantous
 705,crook,,,Tony,Crook,16/02/1920,British,http://en.wikipedia.org/wiki/Tony_Crook
 706,jimmy_stewart,,,Jimmy,Stewart,06/03/1931,British,http://en.wikipedia.org/wiki/Jimmy_Stewart_(racing_driver)
@@ -740,7 +740,7 @@ driverId,driverRef,number,code,forename,surname,dob,nationality,url
 738,gaze,,,Tony,Gaze,03/02/1920,Australian,http://en.wikipedia.org/wiki/Tony_Gaze
 739,charrington,,,Robin,Montgomerie-Charrington,23/06/1915,British,http://en.wikipedia.org/wiki/Robin_Montgomerie-Charrington
 740,comotti,,,Franco,Comotti,24/07/1906,Italian,http://en.wikipedia.org/wiki/Franco_Comotti
-741,etancelin,,,Philippe,Etancelin,1896-12-28,French,http://en.wikipedia.org/wiki/Philippe_%C3%89tancelin
+741,etancelin,,,Philippe,Etancelin,28/12/1896,French,http://en.wikipedia.org/wiki/Philippe_%C3%89tancelin
 742,poore,,,Dennis,Poore,19/08/1916,British,http://en.wikipedia.org/wiki/Dennis_Poore
 743,thompson,,,Eric,Thompson,04/11/1919,British,http://en.wikipedia.org/wiki/Eric_Thompson_(racing_driver)
 744,downing,,,Ken,Downing,05/12/1917,British,http://en.wikipedia.org/wiki/Ken_Downing
@@ -749,7 +749,7 @@ driverId,driverRef,number,code,forename,surname,dob,nationality,url
 747,murray,,,David,Murray,28/12/1909,British,http://en.wikipedia.org/wiki/David_Murray_(driver)
 748,cantoni,,,Eitel,Cantoni,04/10/1906,Uruguayan,http://en.wikipedia.org/wiki/Eitel_Cantoni
 749,aston,,,Bill,Aston,29/03/1900,British,http://en.wikipedia.org/wiki/Bill_Aston
-750,brudes,,,Adolf,Brudes,1899-10-15,German,http://en.wikipedia.org/wiki/Adolf_Brudes
+750,brudes,,,Adolf,Brudes,15/10/1899,German,http://en.wikipedia.org/wiki/Adolf_Brudes
 751,riess,,,Fritz,Riess,11/07/1922,German,http://en.wikipedia.org/wiki/Fritz_Riess
 752,niedermayr,,,Helmut,Niedermayr,29/11/1915,German,http://en.wikipedia.org/wiki/Helmut_Niedermayr
 753,klenk,,,Hans,Klenk,28/10/1919,German,http://en.wikipedia.org/wiki/Hans_Klenk
@@ -759,7 +759,7 @@ driverId,driverRef,number,code,forename,surname,dob,nationality,url
 757,peters,,,Josef,Peters,16/09/1914,German,http://en.wikipedia.org/wiki/Josef_Peters_(driver)
 758,lof,,,Dries,van der Lof,23/08/1919,Dutch,http://en.wikipedia.org/wiki/Dries_van_der_Lof
 759,flinterman,,,Jan,Flinterman,02/10/1919,Dutch,http://en.wikipedia.org/wiki/Jan_Flinterman
-760,dusio,,,Piero,Dusio,1899-10-13,Italian,http://en.wikipedia.org/wiki/Piero_Dusio
+760,dusio,,,Piero,Dusio,13/10/1899,Italian,http://en.wikipedia.org/wiki/Piero_Dusio
 761,crespo,,,Alberto,Crespo,16/01/1920,Argentine,http://en.wikipedia.org/wiki/Alberto_Crespo
 762,rol,,,Franco,Rol,05/06/1908,Italian,http://en.wikipedia.org/wiki/Franco_Rol
 763,sanesi,,,Consalvo,Sanesi,28/03/1911,Italian,http://en.wikipedia.org/wiki/Consalvo_Sanesi
@@ -785,12 +785,12 @@ driverId,driverRef,number,code,forename,surname,dob,nationality,url
 783,grignard,,,Georges,Grignard,25/07/1905,French,http://en.wikipedia.org/wiki/Georges_Grignard
 784,hampshire,,,David,Hampshire,29/12/1917,British,http://en.wikipedia.org/wiki/David_Hampshire
 785,crossley,,,Geoff,Crossley,11/05/1921,British,http://en.wikipedia.org/wiki/Geoff_Crossley
-786,fagioli,,,Luigi,Fagioli,1898-06-09,Italian,http://en.wikipedia.org/wiki/Luigi_Fagioli
+786,fagioli,,,Luigi,Fagioli,09/06/1898,Italian,http://en.wikipedia.org/wiki/Luigi_Fagioli
 787,harrison,,,Cuth,Harrison,06/07/1906,British,http://en.wikipedia.org/wiki/Cuth_Harrison
 788,fry,,,Joe,Fry,26/10/1915,British,http://en.wikipedia.org/wiki/Joe_Fry
 789,martin,,,Eugene,Martin,24/03/1915,French,http://en.wikipedia.org/wiki/Eug%C3%A8ne_Martin
 790,leslie_johnson,,,Leslie,Johnson,22/03/1912,British,http://en.wikipedia.org/wiki/Leslie_Johnson_(racing_driver)
-791,biondetti,,,Clemente,Biondetti,1898-08-18,Italian,http://en.wikipedia.org/wiki/Clemente_Biondetti
+791,biondetti,,,Clemente,Biondetti,18/08/1898,Italian,http://en.wikipedia.org/wiki/Clemente_Biondetti
 792,pian,,,Alfredo,Pian,21/10/1912,Argentine,http://en.wikipedia.org/wiki/Alfredo_Pi%C3%A0n
 793,sommer,,,Raymond,Sommer,31/08/1906,French,http://en.wikipedia.org/wiki/Raymond_Sommer
 794,chitwood,,,Joie,Chitwood,14/04/1912,American,http://en.wikipedia.org/wiki/Joie_Chitwood
