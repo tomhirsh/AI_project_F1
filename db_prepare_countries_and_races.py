@@ -8,7 +8,21 @@ country_by_proportion_champs_drivers
 
 The order of countries is defined by wiki_countries.csv.
 Notice that a name of a country is the same as in wiki_drivers_edited.csv, as we add it to the drivers in db_prepare_wiki.py
+
+
+races - prepare the year of a race, by its id
 """
+def prepare_races_by_year():
+    race_with_year = {}
+    counter = 0
+    with open('formula_DB/races.csv', 'r', encoding="utf8") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if counter == 0:  # the first row (titles)
+                counter = 1
+                continue
+            race_with_year[int(row[0])] = int(row[1]) #the championships in that country
+    return race_with_year
 
 
 def get_rank_by_country(dict_countries, country_name):
@@ -83,4 +97,10 @@ def get_rank_by_proportion_champs_drivers(country):
     return get_rank_by_country(country_by_proportion_champs_drivers_ranked,country)
 
 
+def get_year_of_race(race_id):
+    races_by_year = prepare_races_by_year()
+    return int(races_by_year[race_id])
+
+
+#print(get_year_of_race(1))
 #print(get_rank_by_championships('Finland'))

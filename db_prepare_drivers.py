@@ -1,5 +1,6 @@
 import csv
-import db_prepare_countries
+import db_prepare_countries_and_races
+
 
 def prepare_drivers():
     full_names = {}
@@ -66,8 +67,8 @@ def prepare_drivers():
             continue
         country_name = row[12]
         if country_name != -1:
-            row.append(db_prepare_countries.get_rank_by_championships(country_name))
-            row.append(db_prepare_countries.get_rank_by_proportion_champs_drivers(country_name))
+            row.append(db_prepare_countries_and_races.get_rank_by_championships(country_name))
+            row.append(db_prepare_countries_and_races.get_rank_by_proportion_champs_drivers(country_name))
         else:
             row.append(-1)
             row.append(-1)
@@ -84,33 +85,62 @@ def prepare_drivers():
         dob = row[6]
         _,_,yob = dob.split("/")
         row.append(yob)
-    print(drivers[0])
-    print(drivers[1])
+        if len(row)<16:
+            print(row)
+    #print(drivers[0])
+    #print(drivers[1])
     return drivers
 
 
 drivers = prepare_drivers()
+#print(drivers)
 
+# convert drivers to dictionary by driver_id
+drivers_dict = {}
+for driver in drivers[1:]:
+    drivers_dict[int(driver[0])] = driver[1:]
 
 def get_starts_num_by_driver(driver_id):
-    return drivers[driver_id][10]
+    if driver_id in drivers_dict:
+        return int(drivers[driver_id][10])
+    else:
+        return -1
 
 
 def get_fastest_laps_num_by_driver(driver_id):
-    return drivers[driver_id][11]
+    if driver_id in drivers_dict:
+        return int(drivers[driver_id][11])
+    else:
+        return -1
 
 
 def get_country_rank_championships_by_driver(driver_id):
-    return drivers[driver_id][13]
+    if driver_id in drivers_dict:
+        return int(drivers[driver_id][13])
+    else:
+        return -1
 
 
 def get_country_rank_proportion_by_driver(driver_id):
-    return drivers[driver_id][14]
+    if driver_id in drivers_dict:
+        return int(drivers[driver_id][14])
+    else:
+        return -1
 
 
 def get_year_of_birth_of_driver(driver_id):
-    return drivers[driver_id][15]
+    if driver_id in drivers_dict:
+        driver = drivers_dict[driver_id]
+        return int(driver[14])
+    else:
+        return -1
 
 
+"""
+for driver in drivers:
+    print(driver)
+
+print(get_year_of_birth_of_driver(842))
+"""
 #print(get_country_rank_championships_by_driver(1))
 #print(get_country_rank_proportion_by_driver(1))

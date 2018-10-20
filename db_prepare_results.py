@@ -1,5 +1,6 @@
 import csv
-
+import db_prepare_countries_and_races
+import db_prepare_drivers
 
 # change status in results to binary status (driver is involved or not)
 dict_status = {}
@@ -80,10 +81,23 @@ for i in range(len(results)-1, 0, -1):
         row.append(podiums[driver])
     else:
         row.append(0)
+    # calculate the age of the driver
+    race_id = row[1]
+    driver_id = row[2]
+    birth_year = db_prepare_drivers.get_year_of_birth_of_driver(int(driver_id))
+    if birth_year != -1:
+        driver_age = db_prepare_countries_and_races.get_year_of_race(int(race_id)) - birth_year
+    else:
+        driver_age = -1
+    # print(driver_age)
+    row.append(driver_age)
+
+
 
 (results[0]).append('counterInvolvedProblems')
 (results[0]).append('winsUntilThisRace')
 (results[0]).append('podiumsUntilThisRace')
+(results[0]).append('driverAge')
 
 
 count=0
