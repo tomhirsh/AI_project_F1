@@ -49,9 +49,13 @@ def prepare_constructors_rank():
 
 def prepare_races_by_year():
     race_with_year = {}
+    counter = 0
     with open('formula_DB/races.csv', 'r', encoding="utf8") as f:
         reader = csv.reader(f)
-        for row in reader[1:]:
+        for row in reader:
+            if counter == 0:
+                counter += 1
+                continue
             race_with_year[int(row[0])] = int(row[1]) #the championships in that country
     return race_with_year
 
@@ -90,9 +94,13 @@ def country_by_championships():
 
 def country_by_proportion_champs_drivers():
     champions_proportional_drivers = {}
+    counter = 0
     with open('formula_DB/wiki_countries.csv', 'r', encoding="utf8") as f:
         reader = csv.reader(f)
-        for row in reader[1:]:
+        for row in reader:
+            if counter == 0:
+                counter += 1
+                continue
             drivers_num = row[1]
             champs_num = row[2]
             champions_proportional_drivers[row[0]] = (int(champs_num))/(int(drivers_num)) # proportion between champions and drivers in that country
