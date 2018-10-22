@@ -81,23 +81,49 @@ for i in range(len(results)-1, 0, -1):
         row.append(podiums[driver])
     else:
         row.append(0)
-    # calculate the age of the driver
-    race_id = row[1]
-    driver_id = row[2]
-    birth_year = db_prepare_drivers.get_year_of_birth_of_driver(int(driver_id))
+
+    driver_id = int(row[2])
+    # implement: calculate the age of the driver
+    race_id = int(row[1])
+    birth_year = db_prepare_drivers.get_year_of_birth_of_driver(driver_id)
     if birth_year != -1:
-        driver_age = db_prepare_countries_races_constructors.get_year_of_race(int(race_id)) - birth_year
+        driver_age = db_prepare_countries_races_constructors.get_year_of_race(race_id) - birth_year
     else:
         driver_age = -1
     # print(driver_age)
     row.append(driver_age)
 
+    # implement: country rank (both options)
+    # by championships:
+    country_rank_by_championships = db_prepare_drivers.get_country_rank_championships_by_driver(driver_id)
+    # by proportion drivers to champions:
+    country_rank_by_proportion_champs_drivers = db_prepare_drivers.get_country_rank_proportion_by_driver(driver_id)
+    row.append(country_rank_by_championships)
+    row.append(country_rank_by_proportion_champs_drivers)
+
+    # implement: all-time parameters (starts and fastest lap)
+    # starts:
+    all_time_starts = db_prepare_drivers.get_starts_num_by_driver(driver_id)
+    # fastest lap
+    all_time_fastest_laps = db_prepare_drivers.get_fastest_laps_num_by_driver(driver_id)
+    row.append(all_time_starts)
+    row.append(all_time_fastest_laps)
+
+    # implement: constructor rank
+    constructor_id = int(row[3])
+    constructor_rank = db_prepare_countries_races_constructors.get_constructor_rank(constructor_id)
+    row.append(constructor_rank)
 
 
 (results[0]).append('counterInvolvedProblems')
 (results[0]).append('winsUntilThisRace')
 (results[0]).append('podiumsUntilThisRace')
 (results[0]).append('driverAge')
+(results[0]).append('countryRankByChampionships')
+(results[0]).append('countryRankByProportion')
+(results[0]).append('allTimeStarts')
+(results[0]).append('allTimefastestLap')
+(results[0]).append('constructorRank')
 
 
 count=0

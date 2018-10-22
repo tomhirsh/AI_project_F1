@@ -137,12 +137,18 @@ def get_year_of_race(race_id):
     return int(races_by_year[race_id])
 
 
+constructors_rank = prepare_constructors_rank()
+
+
 def get_constructor_rank(constructor_id):
-    constructors_rank = prepare_constructors_rank()
-    return int(constructors_rank[constructor_id])
+    if constructor_id in constructors_rank:
+        return int(constructors_rank[constructor_id])
+    else:
+        return -1
 
 
 #print(prepare_constructors_rank())
-#print(get_constructor_rank(2))
+#print(constructors_rank)
+#print(get_constructor_rank(102))
 #print(get_year_of_race(1))
 #print(get_rank_by_championships('Finland'))

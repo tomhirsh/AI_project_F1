@@ -100,30 +100,35 @@ drivers_dict = {}
 for driver in drivers[1:]:
     drivers_dict[int(driver[0])] = driver[1:]
 
+
 def get_starts_num_by_driver(driver_id):
     if driver_id in drivers_dict:
-        return int(drivers[driver_id][10])
+        driver = drivers_dict[driver_id]
+        return int(driver[9]) #9
     else:
         return -1
 
 
 def get_fastest_laps_num_by_driver(driver_id):
     if driver_id in drivers_dict:
-        return int(drivers[driver_id][11])
+        driver = drivers_dict[driver_id]
+        return int(driver[10]) #10
     else:
         return -1
 
 
 def get_country_rank_championships_by_driver(driver_id):
     if driver_id in drivers_dict:
-        return int(drivers[driver_id][13])
+        driver = drivers_dict[driver_id]
+        return int(driver[12]) #12
     else:
         return -1
 
 
 def get_country_rank_proportion_by_driver(driver_id):
     if driver_id in drivers_dict:
-        return int(drivers[driver_id][14])
+        driver = drivers_dict[driver_id]
+        return int(driver[13]) #13
     else:
         return -1
 
@@ -134,13 +139,12 @@ def get_year_of_birth_of_driver(driver_id):
         return int(driver[14])
     else:
         return -1
-
-
 """
 for driver in drivers:
-    print(driver)
-
-print(get_year_of_birth_of_driver(842))
+        print(driver)
 """
+
+#print(get_starts_num_by_driver(841))
+
 #print(get_country_rank_championships_by_driver(1))
 #print(get_country_rank_proportion_by_driver(1))
