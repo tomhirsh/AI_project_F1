@@ -126,10 +126,19 @@ for i in range(len(results)-1, 0, -1):
 (results[0]).append('constructorRank')
 
 
-count=0
-# self-check
-for i in range(len(results)):
-    print(results[i])
-    count+=1
-    if count>10:
-        break
+# count=0
+# write results to csv file
+with open('db_prepared.csv', 'w', newline='') as csvfile:
+    db_writer = csv.writer(csvfile, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    for i in range(len(results)):
+        result = results[i]
+        wanted_result = result[0:2]
+        wanted_result.append(result[6])
+        wanted_result.extend(result[18:])
+        db_writer.writerow(wanted_result)
+        """
+        print(wanted_result)
+        count+=1
+        if count>10:
+            break
+        """
