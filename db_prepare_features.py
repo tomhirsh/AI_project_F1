@@ -2,6 +2,11 @@ import csv
 import numpy as np
 import random
 """
+IN ORDER TO USE THIS SCRIPT:
+call to prepare_features(structure)
+structure = 'L1' for the L1 distance function
+structure = 'PROPORTION' for the proportion distance function
+
 Use db_prepared.cv and extract relevant features to compare two drivers.
 The features will describe an OBJECT
 
@@ -9,7 +14,7 @@ The features will describe an OBJECT
 2. proportion
 
 Each time handle a specific race data, and make couples from that race alone.
-Do this for each and every race
+Do this for each and every race.
 """
 
 def randomize(i,j):
@@ -86,5 +91,5 @@ def prepare_features(structure):
 
 #choose structure: L1 or PROPORTION
 #structure = 'PROPORTION'
-structure = 'L1'
-prepare_features(structure)
+#structure = 'L1'
+#prepare_features(structure)
