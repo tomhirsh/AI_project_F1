@@ -36,12 +36,20 @@ def create_features(drivers, labels, structure):
                 binary_labels += [1]
             if structure == 'L1':
                 drivers_features.append(np.asarray(drivers[new_i])-np.asarray(drivers[new_j]))
-            else:
+            elif structure == 'PROPORTION':
                 arr_i = np.array(drivers[new_i], dtype=float)
                 arr_j = np.array(drivers[new_j], dtype=float)
                 featurs_proportion = (np.divide(arr_i, arr_j, out=np.zeros_like(arr_i), where=arr_j != 0))  # handle also divide by zero
-                featurs_proportion =np.round(featurs_proportion,2)  # round to 2 digits after the dot
+                featurs_proportion = np.round(featurs_proportion,2)  # round to 2 digits after the dot
                 drivers_features.append(featurs_proportion)
+            else:  # both L1 and proportion
+                arr_i = np.array(drivers[new_i], dtype=float)
+                arr_j = np.array(drivers[new_j], dtype=float)
+                featurs_proportion = (np.divide(arr_i, arr_j, out=np.zeros_like(arr_i), where=arr_j != 0))  # handle also divide by zero
+                featurs_proportion = np.round(featurs_proportion,2)  # round to 2 digits after the dot
+                features_L1 = np.asarray(drivers[new_i])-np.asarray(drivers[new_j])
+                features = np.append(features_L1,featurs_proportion)
+                drivers_features.append(features)
     return drivers_features, binary_labels
 
 
@@ -87,9 +95,11 @@ def prepare_features(structure):
         print(features[i])
         print(res[i])
     """
-    #print(len(features))
+    return features, res
 
-#choose structure: L1 or PROPORTION
+#choose structure: L1 or PROPORTION or BOTH
 #structure = 'PROPORTION'
 #structure = 'L1'
-#prepare_features(structure)
+#structure = 'BOTH'
+#features, res = prepare_features(structure)
+#print(features[0])
