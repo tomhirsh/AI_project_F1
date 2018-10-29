@@ -86,7 +86,9 @@ def prepare_features(structure):
                 curr_race_labels = []
                 race_id = row[1]
             int_row = [int(num) for num in row]  # convert the row to int
-            curr_race_drivers.append(int_row[3:])
+            wanted_features = int_row[3:]
+            #wanted_features.extend(int_row[8:])
+            curr_race_drivers.append(wanted_features)
             curr_race_labels += [int_row[2]]
             #print(row)
     """
