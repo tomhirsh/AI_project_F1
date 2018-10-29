@@ -87,6 +87,59 @@ def prepare_drivers():
         row.append(yob)
         if len(row)<16:
             print(row)
+
+    """
+    handling the top100 drivers
+    """
+    driver_rank = {}
+    with open('formula_DB/Top_100_driver_ranking.csv', 'r', encoding="utf8") as f:
+        reader = csv.reader(f)
+        count = 0
+        for row in reader:
+            if count == 0:
+                count += 1
+                continue
+            driver_rank[row[1]] = int(row[0])
+
+    counter = 0
+    for row in drivers:
+        if counter == 0:
+            row.append("drivers_top_100")
+            counter += 1
+            continue
+        full_name = row[9]
+        if full_name in driver_rank:
+            driver_top_100 = driver_rank[full_name]
+        else:
+            driver_top_100 = -1
+        row.append(driver_top_100)
+
+    """
+    handling the top38 countries  
+    """
+    country_rank = {}
+    with open('formula_DB/Top_38_country_ranking.csv', 'r', encoding="utf8") as f:
+        reader = csv.reader(f)
+        count = 0
+        for row in reader:
+            if count == 0:
+                count += 1
+                continue
+            country_rank[row[1]] = int(row[0])
+
+    counter = 0
+    for row in drivers:
+        if counter == 0:
+            row.append("countries_top_38")
+            counter += 1
+            continue
+        country_name = row[12]
+        if country_name in country_rank:
+            countries_top_38 = country_rank[country_name]
+        else:
+            countries_top_38 = -1
+        row.append(countries_top_38)
+
     #print(drivers[0])
     #print(drivers[1])
     return drivers
@@ -139,6 +192,23 @@ def get_year_of_birth_of_driver(driver_id):
         return int(driver[14])
     else:
         return -1
+
+
+def get_driver_rank_top100(driver_id):
+    if driver_id in drivers_dict:
+        driver = drivers_dict[driver_id]
+        return int(driver[15])
+    else:
+        return -1
+
+
+def get_country_rank_top38(driver_id):
+    if driver_id in drivers_dict:
+        driver = drivers_dict[driver_id]
+        return int(driver[16])
+    else:
+        return -1
+
 """
 for driver in drivers:
         print(driver)

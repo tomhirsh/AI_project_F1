@@ -53,14 +53,12 @@ def train_and_test_with_all_features(estimators_num, structure):
     return accuracy, feature_importance, clf
 
 
+structure = 'BOTH'  # {L1, PROPORTION, BOTH}
+accuracy, feature_imp, clf = train_and_test_with_all_features(84, structure)
+
+
 """
 structure = 'BOTH'  # {L1, PROPORTION, BOTH}
-accuracy, clf = train_and_test_with_all_features(84, structure)
-
-"""
-
-"""
-structure = 'PROPORTION'  # {L1, PROPORTION, BOTH}
 # hyper-parameters tuning (brute-force)
 max_accuracy = 0
 n_estimators_max_acc = 0
@@ -68,7 +66,7 @@ min_n_estimators = 1
 max_n_estimators = 100
 graph = []
 for n in range(min_n_estimators, max_n_estimators+1):
-    accuracy, clf = train_and_test_with_all_features(n, structure)
+    accuracy, _, _ = train_and_test_with_all_features(n, structure)
     graph.append(accuracy)
     if accuracy > max_accuracy:
         max_accuracy = accuracy

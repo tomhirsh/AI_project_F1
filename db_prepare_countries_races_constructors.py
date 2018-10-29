@@ -146,7 +146,6 @@ def get_constructor_rank(constructor_id):
     else:
         return -1
 
-
 #print(prepare_constructors_rank())
 #print(constructors_rank)
 #print(get_constructor_rank(102))
