@@ -17,13 +17,13 @@ detecting a cycle and doing a Topological sorting
 class Graph():
     def __init__(self, vertices): 
         self.graph = defaultdict(list)  # dictionary containing the list of edges
-        self.V = vertices  #
+        self.V = vertices  # number of vertices (will also define the vertices "names" - by range(num_vertices))
 
     # add edge to the graph
-    def addEdge(self, u, v):
+    def add_edge(self, u, v):
         self.graph[u].append(v)
 
-    def isCyclicUtil(self, v, visited, recStack):
+    def cycle_existsUtil(self, v, visited, recStack):
 
         # Mark current node as visited and
         # adds to recursion stack
@@ -35,28 +35,27 @@ class Graph():
         # recStack then graph is cyclic
         for neighbour in self.graph[v]:
             if not visited[neighbour]:
-                if self.isCyclicUtil(neighbour, visited, recStack):
+                if self.cycle_existsUtil(neighbour, visited, recStack):
                     return True
             elif recStack[neighbour]:
                 return True
 
-        # The node needs to be poped from
-        # recursion stack before function ends
+        # The node needs to be poped from recursion stack before function ends
         recStack[v] = False
         return False
 
     # Returns True if graph is cyclic else False
-    def isCyclic(self):
+    def cycle_exists(self):
         visited = [False] * self.V
         recStack = [False] * self.V
         for node in range(self.V):
-            if visited[node] == False:
-                if self.isCyclicUtil(node,visited,recStack) == True:
+            if not visited[node]:
+                if self.cycle_existsUtil(node,visited,recStack):
                     return True
         return False
 
-    # A recursive function used by topologicalSort
-    def topologicalSortUtil(self, v, visited, stack):
+    # A recursive function used by topological_sort
+    def topological_sortUtil(self, v, visited, stack):
 
         # Mark the current node as visited.
         visited[v] = True
@@ -64,15 +63,15 @@ class Graph():
         # Recur for all the vertices adjacent to this vertex
         for i in self.graph[v]:
             if not visited[i]:
-                self.topologicalSortUtil(i, visited, stack)
+                self.topological_sortUtil(i, visited, stack)
 
                 # Push current vertex to stack which stores result
         stack.insert(0, v)
 
         # The function to do Topological Sort. It uses recursive
 
-    # topologicalSortUtil()
-    def topologicalSort(self):
+    # topological_sortUtil()
+    def topological_sort(self):
         # Mark all the vertices as not visited
         visited = [False] * self.V
         stack = []
@@ -81,8 +80,9 @@ class Graph():
         # Sort starting from all vertices one by one
         for i in range(self.V):
             if not visited[i]:
-                self.topologicalSortUtil(i, visited, stack)
+                self.topological_sortUtil(i, visited, stack)
         return stack
+
 
 """
 a helper function to get the key order, by feature importance (by weights)
@@ -180,8 +180,6 @@ The algorithm:
 3. Do Topological sort on vertices of G'
 4. Return the vertices by the Topological sort
 
-removing cycles (by finding cycles) in https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
-Topological sort in https://www.geeksforgeeks.org/topological-sorting/
 """
 def get_ordered_vertices(edges, drivers_ids, features_importance):
     order_importance = get_key_order(features_importance)
@@ -195,11 +193,11 @@ def get_ordered_vertices(edges, drivers_ids, features_importance):
     graph = Graph(len(drivers_ids))
     for edge in sorted_edges:
         old_graph = graph
-        graph.addEdge(edge[0], edge[1])
-        if graph.isCyclic():
+        graph.add_edge(edge[0], edge[1])
+        if graph.cycle_exists():
             graph = old_graph
     #print(graph.V)
-    return graph.topologicalSort()
+    return graph.topological_sort()
 
 
 """
@@ -218,7 +216,7 @@ def main(drivers_list):
         drivers_keys_exchange[i] = drivers_list[i][0]
         drivers_list[i][0] = i
 
-    for i in range(len(drivers_list)-1,0, -1):
+    for i in range(len(drivers_list)-1, 0, -1):
         for j in range(i):
             # make and add object
             objects.append(make_object(drivers_list[i],drivers_list[j]))
@@ -240,6 +238,10 @@ def main(drivers_list):
         ordered_vertices[i] = drivers_keys_exchange[ordered_vertices[i]]
     return ordered_vertices
 
+########################################################################################################################
+
+# example - using the main function with a given drivers list.
+# getting as output the rank of the drivers in that race
 
 drivers_list = []
 driver = [1,4,3,22,28,4,0,111,7,3]
