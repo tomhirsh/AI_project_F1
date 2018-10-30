@@ -17,6 +17,7 @@ Each time handle a specific race data, and make couples from that race alone.
 Do this for each and every race.
 """
 
+
 def randomize(i,j):
     if random.randint(0,2) == 1:
         return i,j
@@ -42,7 +43,7 @@ def create_features(drivers, labels, structure):
                 featurs_proportion = (np.divide(arr_i, arr_j, out=np.zeros_like(arr_i), where=arr_j != 0))  # handle also divide by zero
                 featurs_proportion = np.round(featurs_proportion,2)  # round to 2 digits after the dot
                 drivers_features.append(featurs_proportion)
-            else:  # both L1 and proportion
+            elif structure == 'BOTH':  # both L1 and proportion
                 arr_i = np.array(drivers[new_i], dtype=float)
                 arr_j = np.array(drivers[new_j], dtype=float)
                 featurs_proportion = (np.divide(arr_i, arr_j, out=np.zeros_like(arr_i), where=arr_j != 0))  # handle also divide by zero
@@ -87,7 +88,7 @@ def prepare_features(structure):
                 race_id = row[1]
             int_row = [int(num) for num in row]  # convert the row to int
             wanted_features = int_row[3:]
-            #wanted_features.extend(int_row[8:])
+            #wanted_features.append(int_row[len(int_row)-1])
             curr_race_drivers.append(wanted_features)
             curr_race_labels += [int_row[2]]
             #print(row)

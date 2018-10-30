@@ -1,16 +1,21 @@
 import csv
 
 """
-Preparing the db of countries, giving id to each country by a specific order
-Two optional function:
-country_by_championships
-country_by_proportion_champs_drivers
+Pre-processing the data for countries, races and constructors.
 
-The order of countries is defined by wiki_countries.csv.
-Notice that a name of a country is the same as in wiki_drivers_edited.csv, as we add it to the drivers in db_prepare_wiki.py
+Countries rank:
+    Two optional function:
+    country_by_championships
+    country_by_proportion_champs_drivers
 
+    The order of countries is defined by wiki_countries.csv.
+    Notice that a name of a country is the same as in wiki_drivers_edited.csv, as we add it to the drivers in db_prepare_wiki.py
 
-races - prepare the year of a race, by its id
+Races:
+    prepare the year of a race, by its id
+
+Constructors rank:
+    by wins of the constructor in all-time races (Kaggle db).
 """
 
 

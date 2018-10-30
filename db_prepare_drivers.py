@@ -111,7 +111,7 @@ def prepare_drivers():
         if full_name in driver_rank:
             driver_top_100 = driver_rank[full_name]
         else:
-            driver_top_100 = -1
+            driver_top_100 = 101
         row.append(driver_top_100)
 
     """
@@ -137,7 +137,7 @@ def prepare_drivers():
         if country_name in country_rank:
             countries_top_38 = country_rank[country_name]
         else:
-            countries_top_38 = -1
+            countries_top_38 = 39
         row.append(countries_top_38)
 
     #print(drivers[0])
@@ -199,7 +199,7 @@ def get_driver_rank_top100(driver_id):
         driver = drivers_dict[driver_id]
         return int(driver[15])
     else:
-        return -1
+        return 101
 
 
 def get_country_rank_top38(driver_id):
@@ -207,7 +207,7 @@ def get_country_rank_top38(driver_id):
         driver = drivers_dict[driver_id]
         return int(driver[16])
     else:
-        return -1
+        return 39
 
 """
 for driver in drivers:

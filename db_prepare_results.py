@@ -32,10 +32,21 @@ with open('formula_DB/results_by_date.csv','r') as f:
 
 
 """
-compute the number of driver-involved-status until the current race
-append that number to the end of each row in results (new column "counterInvolvedProblems")
-compute the number of wins and podiums(positions 1-3) until the current race
-append that numbers to the end of each row in results (new columns "wins","podiums")
+compute the features.
+append that number to the end of each row in results (new column)
+
+This code handles the following features:
+counterInvolvedProblems
+winsUntilThisRace
+podiumsUntilThisRace
+driverAge
+countryRankByChampionships
+countryRankByProportion
+allTimeStarts
+allTimefastestLap
+constructorRank
+driverTop100
+countryTop38
 """
 prob = {}
 wins = {}
@@ -82,8 +93,8 @@ for i in range(len(results)-1, 0, -1):
     else:
         row.append(0)
 
-    driver_id = int(row[2])
     # implement: calculate the age of the driver
+    driver_id = int(row[2])
     race_id = int(row[1])
     birth_year = db_prepare_drivers.get_year_of_birth_of_driver(driver_id)
     if birth_year != -1:
@@ -115,12 +126,12 @@ for i in range(len(results)-1, 0, -1):
     row.append(constructor_rank)
 
     # implement: driver top100
-    #driver_top100 = db_prepare_drivers.get_driver_rank_top100(driver_id)
-    #row.append(driver_top100)
+    driver_top100 = db_prepare_drivers.get_driver_rank_top100(driver_id)
+    row.append(driver_top100)
 
     # implement: country top38
-    #country_top38 = db_prepare_drivers.get_country_rank_top38(driver_id)
-    #row.append(country_top38)
+    country_top38 = db_prepare_drivers.get_country_rank_top38(driver_id)
+    row.append(country_top38)
 
 (results[0]).append('counterInvolvedProblems')
 (results[0]).append('winsUntilThisRace')
@@ -131,12 +142,12 @@ for i in range(len(results)-1, 0, -1):
 (results[0]).append('allTimeStarts')
 (results[0]).append('allTimefastestLap')
 (results[0]).append('constructorRank')
-#(results[0]).append('driverTop100')
-#(results[0]).append('countryTop38')
+(results[0]).append('driverTop100')
+(results[0]).append('countryTop38')
 
 
 # write results to csv file
-with open('db_prepared.csv', 'w', newline='') as csvfile:
+with open('db_prepared_ver2.csv', 'w', newline='') as csvfile:
     db_writer = csv.writer(csvfile, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
     for i in range(len(results)):
         result = results[i]

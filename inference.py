@@ -4,8 +4,8 @@ import operator
 from collections import defaultdict
 """
 This script is the "main" script in this project.
-Given a list of drivers (their features), the output is the race result (finish line order).
-(Using the classifier from training_testing.py and the "remove cycles" algorithm)
+Given a list of drivers (with their features), the output is the race result (finish line order).
+Using the classifier from training_testing.py and the "remove cycles" algorithm
 The input should be:
 [driver_id,...driver_features...]
 """
@@ -85,6 +85,16 @@ class Graph():
 
 
 """
+helper function to print the drivers by order in style 
+"""
+def print_order(vertices_ordered):
+    for i, vertex in enumerate(vertices_ordered):
+        if i != len(vertices_ordered)-1:
+            print(str(vertex)+" -> ", end='')
+        else:
+            print(str(vertex))
+
+"""
 a helper function to get the key order, by feature importance (by weights)
 """
 def get_key_order(list_to_sort):
@@ -126,7 +136,7 @@ def build_sorted_edges(edges, order_importance):
 
 """
 making an object (L1+PROPORTION)
-while the first 2 indexes have the drivers id's
+while the first 2 indexes have the drivers ids
 """
 def make_object(driver1,driver2):
     driver1_id = driver1[0]
@@ -205,7 +215,7 @@ given a race (drivers list) with the features of each driver and it's id,
 the output is the ranking in that race (finish line) - list of drivers ids
 """
 def main(drivers_list):
-    _, feature_importance, clf = training_testing.train_and_test_with_all_features(84, "BOTH")
+    _, feature_importance, clf = training_testing.train_and_test(49)
 
     objects = []
     drivers_ids = []
@@ -236,12 +246,16 @@ def main(drivers_list):
     # exchange the ordered vertices to drivers ids
     for i in range(len(ordered_vertices)):
         ordered_vertices[i] = drivers_keys_exchange[ordered_vertices[i]]
+
+    print_order(ordered_vertices)
+
     return ordered_vertices
 
 ########################################################################################################################
 
 # example - using the main function with a given drivers list.
 # getting as output the rank of the drivers in that race
+
 
 drivers_list = []
 driver = [1,4,3,22,28,4,0,111,7,3]
@@ -250,6 +264,6 @@ driver = [2,13,62,117,32,0,7,222,40,3]
 drivers_list.append(driver)
 driver = [7,12,47,99,30,1,8,212,34,0]
 drivers_list.append(driver)
-
+driver = [10,25,11,41,36,2,4,269,15,2]
+drivers_list.append(driver)
 ranking = main(drivers_list)
-print(ranking)
