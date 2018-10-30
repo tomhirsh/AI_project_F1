@@ -10,7 +10,8 @@ Changes in original DB:
 "wiki_drivers_edited.csv" contains the data from "wiki_drivers.csv" fixed (to English letters only)  
 
 The data is taken from the following sources:  
-https://www.f1-fansite.com/f1-results/all-time-f1-team-rankings/  
+https://www.kaggle.com/cjgdev/formula-1-race-data-19502017  
+https://en.wikipedia.org/wiki/List_of_Formula_One_drivers  
 https://www.f1-fansite.com/f1-results/all-time-f1-driver-rankings/  
 https://www.f1-fansite.com/f1-results/time-f1-list-drivers-country/  
 
