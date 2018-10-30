@@ -215,7 +215,7 @@ given a race (drivers list) with the features of each driver and it's id,
 the output is the ranking in that race (finish line) - list of drivers ids
 """
 def main(drivers_list):
-    _, feature_importance, clf = training_testing.train_and_test(49)
+    _, feature_importance, clf = training_testing.train_and_test(98)
 
     objects = []
     drivers_ids = []
