@@ -258,12 +258,12 @@ def main(drivers_list):
 
 
 drivers_list = []
-driver = [1,4,3,22,28,4,0,111,7,3]
-drivers_list.append(driver)
 driver = [2,13,62,117,32,0,7,222,40,3]
 drivers_list.append(driver)
-driver = [7,12,47,99,30,1,8,212,34,0]
+driver = [1,4,3,22,28,4,0,111,7,3]
 drivers_list.append(driver)
 driver = [10,25,11,41,36,2,4,269,15,2]
+drivers_list.append(driver)
+driver = [8,1,0,0,21,4,12,43,0,33]
 drivers_list.append(driver)
 ranking = main(drivers_list)
