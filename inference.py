@@ -71,11 +71,11 @@ class Graph():
         # The function to do Topological Sort. It uses recursive
 
     # topological_sortUtil()
+    # the vertices are checked in order by the weights of edges they are in.
     def topological_sort(self):
         # Mark all the vertices as not visited
         visited = [False] * self.V
         stack = []
-
         # Call the recursive helper function to store Topological
         # Sort starting from all vertices one by one
         for i in range(self.V):
@@ -197,7 +197,6 @@ def get_ordered_vertices(edges, drivers_ids, features_importance):
     # build the features by importance
     # a LIST of the edges (tuple, directed), sorted by weight.
     sorted_edges = build_sorted_edges(edges, order_importance)
-
     #print(sorted_edges)
 
     graph = Graph(len(drivers_ids))
@@ -215,7 +214,7 @@ given a race (drivers list) with the features of each driver and it's id,
 the output is the ranking in that race (finish line) - list of drivers ids
 """
 def main(drivers_list):
-    _, feature_importance, clf = training_testing.train_and_test(98)
+    _, feature_importance, clf = training_testing.train_and_test(87)
 
     objects = []
     drivers_ids = []
@@ -258,12 +257,12 @@ def main(drivers_list):
 
 
 drivers_list = []
-driver = [2,13,62,117,32,0,7,222,40,3]
+driver = [2,2,13,62,117,7,222,40,3]
 drivers_list.append(driver)
-driver = [1,4,3,22,28,4,0,111,7,3]
+driver = [1,1,4,3,22,0,111,7,3]
 drivers_list.append(driver)
-driver = [10,25,11,41,36,2,4,269,15,2]
+driver = [10,10,25,11,41,4,269,15,2]
 drivers_list.append(driver)
-driver = [8,1,0,0,21,4,12,43,0,33]
+driver = [8,9,1,0,0,12,43,0,33]
 drivers_list.append(driver)
 ranking = main(drivers_list)

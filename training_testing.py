@@ -37,7 +37,7 @@ def train_and_test(num_estimators):
     features, res = db.prepare_features(structure)
     feat_train, feat_test, r_train, r_test = train_test_split(features, res)  # randomly split the examples to train and test set 75%,25%
 
-    return train_and_test_with_random_forest(num_estimators, 25, feat_train, feat_test, r_train, r_test)
+    return train_and_test_with_random_forest(num_estimators, 15, feat_train, feat_test, r_train, r_test)
 
 
 def hyper_parameters_tuning_decision_tree_min_samples_split():
@@ -72,7 +72,7 @@ def hyper_parameters_tuning_random_forest_min_samples_split():
     # random forest
     a = [2,5,10,15,20,25]
     for i, val in enumerate(a):
-        accuracy, _, _ = train_and_test_with_random_forest(98, val, feat_train, feat_test, r_train, r_test)
+        accuracy, _, _ = train_and_test_with_random_forest(87, val, feat_train, feat_test, r_train, r_test)
         graph.append(accuracy)
     plt.plot([2,5,10,15,20,25], graph)
     plt.ylabel("Accuracy")
@@ -82,7 +82,7 @@ def hyper_parameters_tuning_random_forest_min_samples_split():
     plt.show()
 
 
-def hyper_parameters_tuning_random_forest():
+def hyper_parameters_tuning_random_forest_n_estimators():
     structure = 'BOTH'  # {L1, PROPORTION, BOTH}
     # prepare features and labels for train and test
     # splitting into train and test data
@@ -96,7 +96,7 @@ def hyper_parameters_tuning_random_forest():
     max_n_estimators = 100
     graph = []
     for n in range(min_n_estimators, max_n_estimators+1):
-        accuracy, _, _ = train_and_test_with_random_forest(n, 25, feat_train, feat_test, r_train, r_test)
+        accuracy, _, _ = train_and_test_with_random_forest(n, 15, feat_train, feat_test, r_train, r_test)
         graph.append(accuracy)
         if accuracy > max_accuracy:
             max_accuracy = accuracy
@@ -111,7 +111,7 @@ def hyper_parameters_tuning_random_forest():
     plt.show()
 
 # testing - hyper parameters tuning
-#hyper_parameters_tuning_random_forest()
+#hyper_parameters_tuning_random_forest_n_estimators()
 #hyper_parameters_tuning_decision_tree_min_samples_split()
 #hyper_parameters_tuning_random_forest_min_samples_split()
-#train_and_test(98)
+#train_and_test(87)

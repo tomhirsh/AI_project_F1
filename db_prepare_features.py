@@ -60,7 +60,7 @@ def prepare_features(structure):
     res = []  # The label. 0 if the first driver won, 1 if the second won
     race_id = -1  # To separate the races and figure out the relevant couples
     counter = 0
-    with open('db_prepared.csv', 'r', encoding="utf8") as f:
+    with open('db_prepared_ver0.csv', 'r', encoding="utf8") as f:
         reader = csv.reader(f, delimiter=',')
         curr_race_drivers = []
         curr_race_labels = []
