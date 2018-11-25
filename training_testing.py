@@ -9,8 +9,8 @@ http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestCl
 """
 
 
-def train_and_test_with_decision_tree(s_split,features_train, features_test, res_train, res_test):
-    clf = DecisionTreeClassifier(random_state=0 , criterion="entropy", min_samples_split=s_split)
+def train_and_test_with_decision_tree(s_split,features_train, features_test, res_train, res_test, crit="entropy"):
+    clf = DecisionTreeClassifier(random_state=0 , criterion=crit, min_samples_split=s_split)
     clf.fit(features_train, res_train)
     accuracy = clf.score(features_test, res_test)
     print("Decision tree. Accuracy: "+str(accuracy))
@@ -18,67 +18,67 @@ def train_and_test_with_decision_tree(s_split,features_train, features_test, res
     return accuracy
 
 
-def train_and_test_with_random_forest(estimators_num, s_split, features_train, features_test, res_train, res_test):
-    clf = RandomForestClassifier(n_estimators=estimators_num, criterion="entropy", min_samples_split=s_split)  # use default values
+def train_and_test_with_random_forest(estimators_num, s_split, features_train, features_test, res_train, res_test, crit="entropy"):
+    clf = RandomForestClassifier(n_estimators=estimators_num, criterion=crit, min_samples_split=s_split)  # use default values
     clf.fit(features_train, res_train)
     accuracy = clf.score(features_test, res_test)
     print("Random forest with "+str(estimators_num)+" n_estimators. Accuracy: "+str(accuracy))
     feature_importance = clf.feature_importances_
-    #print("Feature importance:")
-    #print(clf.feature_importances_)  # Return the feature importances (the higher, the more important the feature)
+    print("Feature importance:")
+    print(clf.feature_importances_)  # Return the feature importances (the higher, the more important the feature)
 
     return accuracy, feature_importance, clf
 
 
-def train_and_test(num_estimators):
+def train_and_test():
     structure = 'BOTH'  # {L1, PROPORTION, BOTH}
     # prepare features and labels for train and test
     # splitting into train and test data
     features, res = db.prepare_features(structure)
     feat_train, feat_test, r_train, r_test = train_test_split(features, res)  # randomly split the examples to train and test set 75%,25%
 
-    return train_and_test_with_random_forest(num_estimators, 15, feat_train, feat_test, r_train, r_test)
+    return train_and_test_with_random_forest(60, 25, feat_train, feat_test, r_train, r_test)
 
-
-def hyper_parameters_tuning_decision_tree_min_samples_split():
+def train_and_test_check_criterion():
     structure = 'BOTH'  # {L1, PROPORTION, BOTH}
     # prepare features and labels for train and test
     # splitting into train and test data
     features, res = db.prepare_features(structure)
     feat_train, feat_test, r_train, r_test = train_test_split(features, res)  # randomly split the examples to train and test set 75%,25%
 
-    graph = []
+    criterion_set = ["gini", "entropy"]
+    for criterion in criterion_set:
+        print(criterion)
+        acc_tree = train_and_test_with_decision_tree(2, feat_train, feat_test, r_train, r_test, criterion)
+        acc_r_forest, _, _ = train_and_test_with_random_forest(10, 2, feat_train, feat_test, r_train, r_test, criterion)
+        print("accuracy for decision tree: "+str(acc_tree))
+        print("accuracy for random forest: " + str(acc_r_forest))
+
+
+def hyper_parameters_tuning_min_samples_split():
+    structure = 'BOTH'  # {L1, PROPORTION, BOTH}
+    # prepare features and labels for train and test
+    # splitting into train and test data
+    features, res = db.prepare_features(structure)
+    feat_train, feat_test, r_train, r_test = train_test_split(features, res)  # randomly split the examples to train and test set 75%,25%
+
+    graph_tree = []
+    graph_r_forest = []
     # decision tree
     a = [2,5,10,15,20,25]
     for i, val in enumerate(a):
-        accuracy = train_and_test_with_decision_tree(val, feat_train, feat_test, r_train, r_test)
-        graph.append(accuracy)
-    plt.plot([2,5,10,15,20,25], graph)
+        accuracy_tree = train_and_test_with_decision_tree(val, feat_train, feat_test, r_train, r_test)
+        accuracy_r_forest, _, _ = train_and_test_with_random_forest(10, val, feat_train, feat_test, r_train, r_test)
+        graph_tree.append(accuracy_tree)
+        graph_r_forest.append(accuracy_r_forest)
+
+    plt.plot([2,5,10,15,20,25], graph_tree, color="green", label="Decision Tree")
+    plt.plot([2,5,10,15,20,25], graph_r_forest, color="blue", label="Random Forest")
     plt.ylabel("Accuracy")
     plt.xlabel("min_samples_split")
     plt.grid(True)
-    plt.title("Accuracy as a function of min_samples_split with "+str(structure)+" features")
-    plt.show()
-
-
-def hyper_parameters_tuning_random_forest_min_samples_split():
-    structure = 'BOTH'  # {L1, PROPORTION, BOTH}
-    # prepare features and labels for train and test
-    # splitting into train and test data
-    features, res = db.prepare_features(structure)
-    feat_train, feat_test, r_train, r_test = train_test_split(features, res)  # randomly split the examples to train and test set 75%,25%
-
-    graph = []
-    # random forest
-    a = [2,5,10,15,20,25]
-    for i, val in enumerate(a):
-        accuracy, _, _ = train_and_test_with_random_forest(87, val, feat_train, feat_test, r_train, r_test)
-        graph.append(accuracy)
-    plt.plot([2,5,10,15,20,25], graph)
-    plt.ylabel("Accuracy")
-    plt.xlabel("min_samples_split")
-    plt.grid(True)
-    plt.title("Accuracy as a function of min_samples_split with "+str(structure)+" features")
+    plt.legend(loc='lower right')
+    plt.title("Accuracy as a function of min_samples_split")
     plt.show()
 
 
@@ -96,7 +96,7 @@ def hyper_parameters_tuning_random_forest_n_estimators():
     max_n_estimators = 100
     graph = []
     for n in range(min_n_estimators, max_n_estimators+1):
-        accuracy, _, _ = train_and_test_with_random_forest(n, 15, feat_train, feat_test, r_train, r_test)
+        accuracy, _, _ = train_and_test_with_random_forest(n, 25, feat_train, feat_test, r_train, r_test)
         graph.append(accuracy)
         if accuracy > max_accuracy:
             max_accuracy = accuracy
@@ -111,7 +111,8 @@ def hyper_parameters_tuning_random_forest_n_estimators():
     plt.show()
 
 # testing - hyper parameters tuning
+#train_and_test_check_criterion()
+#hyper_parameters_tuning_min_samples_split()
 #hyper_parameters_tuning_random_forest_n_estimators()
-#hyper_parameters_tuning_decision_tree_min_samples_split()
-#hyper_parameters_tuning_random_forest_min_samples_split()
-#train_and_test(87)
+
+train_and_test()

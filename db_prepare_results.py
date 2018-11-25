@@ -124,15 +124,16 @@ for i in range(len(results)-1, 0, -1):
     constructor_id = int(row[3])
     constructor_rank = db_prepare_countries_races_constructors.get_constructor_rank(constructor_id)
     row.append(constructor_rank)
-    """
+
     # implement: driver top100
     driver_top100 = db_prepare_drivers.get_driver_rank_top100(driver_id)
     row.append(driver_top100)
-    
+    """
     # implement: country top38
     country_top38 = db_prepare_drivers.get_country_rank_top38(driver_id)
     row.append(country_top38)
     """
+
 
 (results[0]).append('counterInvolvedProblems')
 (results[0]).append('winsUntilThisRace')
@@ -143,20 +144,23 @@ for i in range(len(results)-1, 0, -1):
 (results[0]).append('allTimeStarts')
 (results[0]).append('allTimefastestLap')
 (results[0]).append('constructorRank')
-#(results[0]).append('driverTop100')
+(results[0]).append('driverTop100')
 #(results[0]).append('countryTop38')
 
 
 # write results to csv file
-with open('db_prepared_ver0.csv', 'w', newline='') as csvfile:
+with open('db_prepared_ver5.csv', 'w', newline='') as csvfile:
     db_writer = csv.writer(csvfile, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
     for i in range(len(results)):
         result = results[i]
         wanted_result = result[0:2]
         wanted_result.append(result[6])  # position (our label)
         wanted_result.append(result[5])
-        wanted_result.extend(result[18:21])
-        wanted_result.extend(result[23:])
+        wanted_result.append(result[18])
+        #wanted_result.extend(result[18:21])
+        wanted_result.append(result[20])
+        wanted_result.append(result[23])
+        wanted_result.extend(result[24:])
         db_writer.writerow(wanted_result)
 
 """
