@@ -37,6 +37,7 @@ def train_and_test():
     features, res = db.prepare_features(structure)
     feat_train, feat_test, r_train, r_test = train_test_split(features, res)  # randomly split the examples to train and test set 75%,25%
 
+    #return train_and_test_with_random_forest(60, 25, feat_train, feat_test, r_train, r_test)
     return train_and_test_with_random_forest(60, 25, feat_train, feat_test, r_train, r_test)
 
 def train_and_test_check_criterion():
@@ -115,4 +116,4 @@ def hyper_parameters_tuning_random_forest_n_estimators():
 #hyper_parameters_tuning_min_samples_split()
 #hyper_parameters_tuning_random_forest_n_estimators()
 
-train_and_test()
+#train_and_test()
