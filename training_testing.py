@@ -24,8 +24,8 @@ def train_and_test_with_random_forest(estimators_num, s_split, features_train, f
     accuracy = clf.score(features_test, res_test)
     print("Random forest with "+str(estimators_num)+" n_estimators. Accuracy: "+str(accuracy))
     feature_importance = clf.feature_importances_
-    print("Feature importance:")
-    print(clf.feature_importances_)  # Return the feature importances (the higher, the more important the feature)
+    #print("Feature importance:")
+    #print(clf.feature_importances_)  # Return the feature importances (the higher, the more important the feature)
 
     return accuracy, feature_importance, clf
 

@@ -102,30 +102,24 @@ def get_key_order(list_to_sort):
     for i in range(len(list_to_sort)):
         keys_sorted[i] = list_to_sort[i]
     keys_sorted = sorted(keys_sorted.items(), key=operator.itemgetter(1), reverse=True)
-    #print(keys_sorted)
     out_keys = []
     for x in range(len(list_to_sort)):
         out_keys.append(keys_sorted[x][0])
-    #print(out_keys)
     return out_keys
 
 
 def sort_dict_by_lists(prepared_edges):
-    #print(prepared_edges)
     sorted_edges = sorted(prepared_edges.items(), key=operator.itemgetter(1), reverse=True)
-    #print(sorted_edges)
     return sorted_edges
 
 
 def build_sorted_edges(edges, order_importance):
     prepared_edges = {}
     for e in edges:
-        #print(edges[e])
         edge = []
         for i in range(len(order_importance)):
             edge.append(edges[e][order_importance[i]])
         prepared_edges[e] = edge
-        #print(edge)
     sorted_edges = sort_dict_by_lists(prepared_edges)
     sorted_edges_v = []
     for edge in sorted_edges:
@@ -197,7 +191,6 @@ def get_ordered_vertices(edges, drivers_ids, features_importance):
     # build the features by importance
     # a LIST of the edges (tuple, directed), sorted by weight.
     sorted_edges = build_sorted_edges(edges, order_importance)
-    #print(sorted_edges)
 
     graph = Graph(len(drivers_ids))
     for edge in sorted_edges:
@@ -205,7 +198,6 @@ def get_ordered_vertices(edges, drivers_ids, features_importance):
         graph.add_edge(edge[0], edge[1])
         if graph.cycle_exists():
             graph = old_graph
-    #print(graph.V)
     return graph.topological_sort()
 
 
@@ -236,8 +228,6 @@ def main(drivers_list):
                 drivers_ids.append(driver_id1)
             if driver_id2 not in drivers_ids:
                 drivers_ids.append(driver_id2)
-    #for object in driver_ids:
-    #    print(object)
 
     edges = make_edges(objects, clf)  # is defined by edges
     ordered_vertices = get_ordered_vertices(edges, drivers_ids, feature_importance)
@@ -255,14 +245,27 @@ def main(drivers_list):
 # example - using the main function with a given drivers list.
 # getting as output the rank of the drivers in that race
 
+"""
+For each driver enter the features as follows:
+1. driver id
+2. grid
+3. counterInvolvedProblems
+4. winsUntilThisRace
+5. podiumsUntilThisRace
+6. countryRankByProportion
+7. allTimeStarts
+8. allTimefastestLap
+9. constructorRank
+10. driverTop100
+"""
 
 drivers_list = []
-driver = [2,2,13,62,117,7,222,40,3]
+driver = [2,2,13,62,117,7,222,40,3,1]
 drivers_list.append(driver)
-driver = [1,1,4,3,22,0,111,7,3]
+driver = [1,1,4,3,22,0,111,7,3,11]
 drivers_list.append(driver)
-driver = [10,10,25,11,41,4,269,15,2]
+driver = [10,10,25,11,41,4,269,15,2,8]
 drivers_list.append(driver)
-driver = [8,9,1,0,0,12,43,0,33]
+driver = [8,8,12,0,7,14,148,4,33,101]
 drivers_list.append(driver)
 ranking = main(drivers_list)
